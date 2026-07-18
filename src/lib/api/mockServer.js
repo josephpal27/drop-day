@@ -41,7 +41,13 @@ function releaseExpiredHolds() {
         if (h.status === "active" && h.expiresAt <= now) {
             h.status = "expired";
             const product = products.find((p) => p.id === h.productId);
-            if (product) product.stock += 1;
+            if (product) {
+                product.stock += 1;
+                // FIX: a product that went sold_out because its last unit was
+                // held must become purchasable again once that hold expires,
+                // not just have its stock number incremented.
+                if (product.status === "sold_out") product.status = "live";
+            }
         }
     });
 }

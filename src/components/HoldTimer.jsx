@@ -42,8 +42,12 @@ export default function HoldTimer({ hold }) {
         >
             <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-[var(--text-primary)]">{hold.productName}</p>
+                {/* Optimistic: removes instantly from the panel. If the server
+                    call fails in the background, DropContext restores this hold
+                    and shows a notice at the CartPanel level — no local pending
+                    state needed here anymore. */}
                 <button
-                    onClick={() => releaseHold(hold.id)}
+                    onClick={() => releaseHold(hold)}
                     className="text-[10px] font-mono text-[var(--text-muted)] hover:text-[var(--text-secondary)] tracking-widest"
                 >
                     RELEASE

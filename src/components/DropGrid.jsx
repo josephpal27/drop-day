@@ -8,8 +8,12 @@ import EmptyState from "./EmptyState";
 export default function DropGrid() {
   const { products, status } = useDropStore();
 
+  // FIX: only show the full-page error state when we have nothing to show yet
+  // (initial load failure). A background poll failure (12% fail rate every
+  // 5s) should not tear down a grid the user is actively looking at —
+  // we just keep showing the last good data.
   if (status === "loading" && products.length === 0) return <LoadingSkeleton />;
-  if (status === "error") return <ErrorState />;
+  if (status === "error" && products.length === 0) return <ErrorState />;
   if (status === "ready" && products.length === 0) return <EmptyState />;
 
   return (
