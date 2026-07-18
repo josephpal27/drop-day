@@ -1,11 +1,11 @@
 import "./globals.css";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Oswald, Inter, JetBrains_Mono } from "next/font/google";
 import { DropProvider } from "@/context/DropContext";
 
-const spaceGrotesk = Space_Grotesk({
+const oswald = Oswald({
   subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-space-grotesk",
+  weight: ["600", "700"],
+  variable: "--font-display",
 });
 
 const inter = Inter({
@@ -21,13 +21,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Drop Day",
-  description: "Flash-sale storefront",
+  title: "Drop Day - Flash Sale Storefront",
+  description: "Here's the season's best flash sale storefront is live.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${oswald.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
         <DropProvider>{children}</DropProvider>
       </body>

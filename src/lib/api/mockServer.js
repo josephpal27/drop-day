@@ -4,32 +4,34 @@ const HOLD_DURATION_MS = 60_000;
 
 // in-memory "database"
 let products = [
-    { id: "p1", name: "Ember Runner Sneaker", price: 89, stock: 6, status: "live", watchers: 0 },
-    { id: "p2", name: "Aurora Tote Bag", price: 54, stock: 3, status: "live", watchers: 0 },
-    { id: "p3", name: "Nova Cap", price: 29, stock: 0, status: "sold_out", watchers: 0 },
-    { id: "p4", name: "Drift Hoodie", price: 74, stock: 8, status: "live", watchers: 0 },
-    { id: "p5", name: "Glass Watch", price: 149, stock: 2, status: "live", watchers: 0 },
+    { id: "p1", name: "Ember Runner Sneaker", price: 7499, stock: 6, status: "live", watchers: 0, image: "1" },
+    { id: "p2", name: "Aurora Tote Bag", price: 2999, stock: 3, status: "live", watchers: 0, image: "3" },
+    { id: "p3", name: "Nova Cap", price: 1499, stock: 0, status: "sold_out", watchers: 0, image: "2" },
+    { id: "p4", name: "Drift Hoodie", price: 4999, stock: 8, status: "live", watchers: 0, image: "4" },
+    { id: "p5", name: "Glass Watch", price: 12999, stock: 2, status: "live", watchers: 0, image: "5" },
     {
         id: "p6",
         name: "Kite Jacket",
-        price: 120,
+        price: 8999,
         stock: 5,
         status: "dropping_soon",
         dropTime: Date.now() + 90_000,
         watchers: 0,
+        image: "6",
     },
     {
         id: "p7",
-        name: "Pulse Earbuds",
-        price: 99,
+        name: "Headphones",
+        price: 6499,
         stock: 4,
         status: "dropping_soon",
         dropTime: Date.now() + 180_000,
         watchers: 0,
+        image: "7",
     },
-    { id: "p8", name: "Solstice Scarf", price: 39, stock: 7, status: "live", watchers: 0 },
-    { id: "p9", name: "Marrow Boots", price: 134, stock: 0, status: "sold_out", watchers: 0 },
-    { id: "p10", name: "Halo Sunglasses", price: 59, stock: 5, status: "live", watchers: 0 },
+    { id: "p8", name: "Solstice Scarf", price: 2199, stock: 7, status: "live", watchers: 0, image: "9" },
+    { id: "p9", name: "Earbuds", price: 10999, stock: 0, status: "sold_out", watchers: 0, image: "8" },
+    { id: "p10", name: "Halo Sunglasses", price: 3999, stock: 5, status: "live", watchers: 0, image: "10" },
 ];
 
 // holds: { id, productId, expiresAt, status: 'active' | 'expired' | 'released' | 'consumed' }
@@ -43,9 +45,6 @@ function releaseExpiredHolds() {
             const product = products.find((p) => p.id === h.productId);
             if (product) {
                 product.stock += 1;
-                // FIX: a product that went sold_out because its last unit was
-                // held must become purchasable again once that hold expires,
-                // not just have its stock number incremented.
                 if (product.status === "sold_out") product.status = "live";
             }
         }
@@ -71,7 +70,6 @@ setInterval(() => {
         target.stock = Math.max(0, target.stock - 1);
         if (target.stock === 0) target.status = "sold_out";
     }
-    // watchers wander a bit (used by Panic Mode/urgency styling)
     products.forEach((p) => {
         if (p.status === "live") {
             p.watchers = Math.max(0, p.watchers + Math.floor(Math.random() * 5) - 2);

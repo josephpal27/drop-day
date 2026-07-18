@@ -9,27 +9,26 @@
 }
 
 :root {
-  --bg: #0b0b0f;
-  --surface: #15151b;
-  --surface-2: #1c1c24;
-  --border: #2a2a33;
-  --text-primary: #f5f4f0;
-  --text-secondary: #9b9ba6;
-  --text-muted: #6a6a76;
-  --accent: #d4ff3f;
-  --accent-ink: #0b0b0f;
-  --warning: #ffb800;
-  --danger: #ff4757;
+  --bg: #F5F4EF;
+  --paper: #FFFFFF;
+  --paper-2: #ECE9E1;
+  --ink: #1C1B18;
+  --ink-muted: #6B6862;
+  --ink-faint: #A19C92;
+  --line: #DBD6CA;
+  --stamp-red: #C8371F;
+  --amber: #B8791A;
+  --go: #1F6F4A;
 }
 
 body {
   background: var(--bg);
-  color: var(--text-primary);
+  color: var(--ink);
   font-family: var(--font-inter), sans-serif;
 }
 
 .font-display {
-  font-family: var(--font-space-grotesk), sans-serif;
+  font-family: var(--font-display), sans-serif;
 }
 
 .font-mono {
@@ -37,12 +36,19 @@ body {
 }
 
 @keyframes panic-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.55; }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--stamp-red) 35%, transparent);
+  }
+
+  50% {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--stamp-red) 0%, transparent);
+  }
 }
 
 .animate-panic {
-  animation: panic-pulse 0.9s ease-in-out infinite;
+  animation: panic-pulse 1.1s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
