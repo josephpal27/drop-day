@@ -16,7 +16,7 @@ export default function CheckoutSummary() {
                 <p className="font-display font-bold text-lg text-[var(--ink)] mb-1 uppercase">Order confirmed</p>
                 <p className="text-sm font-mono text-[var(--ink-muted)] mb-4">ORDER NO. {checkout.orderId}</p>
                 <Link href="/" className="text-sm underline text-[var(--ink-muted)] hover:text-[var(--ink)]">
-                    Back to drop
+                    Back to Drop
                 </Link>
             </div>
         );
@@ -27,7 +27,7 @@ export default function CheckoutSummary() {
             <div className="rounded-xl border border-[var(--line)] bg-[var(--paper)] p-6 text-center">
                 <p className="text-[var(--ink-muted)] mb-3">No active tickets to check out.</p>
                 <Link href="/" className="text-sm underline text-[var(--ink-muted)] hover:text-[var(--ink)]">
-                    Back to drop
+                    Back to Drop
                 </Link>
             </div>
         );
@@ -37,7 +37,7 @@ export default function CheckoutSummary() {
 
     return (
         <div className="rounded-xl border border-[var(--line)] bg-[var(--paper)] p-6 flex flex-col gap-4">
-            <p className="font-display font-bold text-sm tracking-widest uppercase text-[var(--ink)]">Order summary</p>
+            <p className="font-display font-bold text-sm tracking-widest uppercase text-[var(--ink)]">Order Summary</p>
 
             <div className="flex flex-col gap-2 font-mono text-sm">
                 {holds.map((h) => (
@@ -66,7 +66,7 @@ export default function CheckoutSummary() {
                 disabled={checkout.state === "confirming" || holds.length === 0}
                 className="px-4 py-2.5 rounded-lg bg-[var(--ink)] text-white text-sm font-semibold disabled:opacity-40 hover:-translate-y-0.5 transition-transform duration-150"
             >
-                {checkout.state === "confirming" ? "Confirming…" : "Confirm order"}
+                {checkout.state === "confirming" ? "Confirming…" : "Confirm Order"}
             </button>
         </div>
     );
