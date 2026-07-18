@@ -54,7 +54,7 @@ export default function CartPanel() {
                     onClick={resetCheckout}
                     className="mt-1 px-3 py-2.5 rounded-lg bg-[var(--ink)] text-white text-sm font-semibold text-center hover:-translate-y-0.5 transition-transform duration-150"
                 >
-                    Proceed to checkout
+                    Proceed to Checkout
                 </Link>
             )}
         </aside>
